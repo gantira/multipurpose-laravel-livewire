@@ -14,6 +14,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
+
     @livewireStyles
 </head>
 
@@ -57,13 +59,26 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            toastr.options = {
+                "positionClass": "toast-bottom-right",
+                "progressBar": true,
+            }
+
+            window.addEventListener('hide-form', event => {
+                $('#form').modal('hide');
+                console.log(event);
+                toastr.success(event.detail.message);
+            })
+        })
+    </script>
+
     <script>
         window.addEventListener('show-form', event => {
             $('#form').modal('show')
-        })
-
-        window.addEventListener('hide-form', event => {
-            $('#form').modal('hide')
         })
     </script>
 

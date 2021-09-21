@@ -27,7 +27,7 @@ class ListUsers extends Component
 
         User::create($validatedData);
 
-        $this->dispatchBrowserEvent('hide-form');
+        $this->dispatchBrowserEvent('hide-form', ['message' => 'User added successfully!']);
 
         return redirect()->back();
     }
