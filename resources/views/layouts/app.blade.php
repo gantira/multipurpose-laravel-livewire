@@ -95,6 +95,10 @@
             $('#confirmationModal').modal('hide');
             toastr.success(event.detail.message, 'Success');
         })
+
+        window.addEventListener('alert', event => {
+            toastr.success(event.detail.message, 'Success');
+        })
     </script>
 
     @stack('js')
