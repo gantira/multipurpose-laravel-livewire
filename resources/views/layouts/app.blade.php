@@ -70,15 +70,23 @@
 
             window.addEventListener('hide-form', event => {
                 $('#form').modal('hide');
-                console.log(event);
-                toastr.success(event.detail.message);
+                toastr.success(event.detail.message, 'Success');
             })
         })
     </script>
 
     <script>
         window.addEventListener('show-form', event => {
-            $('#form').modal('show')
+            $('#form').modal('show');
+        })
+
+        window.addEventListener('show-delete-modal', event => {
+            $('#confirmationModal').modal('show');
+        })
+
+        window.addEventListener('hide-delete-modal', event => {
+            $('#confirmationModal').modal('hide');
+            toastr.success(event.detail.message, 'Success');
         })
     </script>
 
