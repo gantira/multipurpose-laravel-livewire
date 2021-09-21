@@ -67,11 +67,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="appointmentTime">Appointment Time</label>
-                                            <div wire:ignore class="input-group date" id="appointmentDateTime"
-                                                data-target-input="nearest" data-appointmentdate="@this">
+                                            <div wire:ignore class="input-group date" id="appointmentTime"
+                                                data-target-input="nearest" data-appointmenttime="@this">
                                                 <input type="text" class="form-control datetimepicker-input"
-                                                    data-target="#appointmentDateTime" id="appointmentDateInput">
-                                                <div class="input-group-append" data-target="#appointmentDateTime"
+                                                    data-target="#appointmentTime" id="appointmentTimeInput">
+                                                <div class="input-group-append" data-target="#appointmentTime"
                                                     data-toggle="datetimepicker">
                                                     <div class="input-group-text">
                                                         <div class="fa fa-clock"></div>

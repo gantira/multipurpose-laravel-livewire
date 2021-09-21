@@ -102,9 +102,6 @@
             $('#appointmentDate').datetimepicker({
                 format: 'L',
             });
-            $('#appointmentDateTime').datetimepicker({
-                format: 'L',
-            });
 
             $('#appointmentDate').on("change.datetimepicker", function(e) {
                 let date = $(this).data('appointmentdate');
@@ -112,10 +109,13 @@
 
             });
 
-            $('#appointmentDateTime').on("change.datetimepicker", function(e) {
-                let date = $(this).data('appointmentDateTime');
-                eval(date).set('state.time', $('#appointmentDateInput').val());
+            $('#appointmentTime').datetimepicker({
+                format: 'LT',
+            });
 
+            $('#appointmentTime').on("change.datetimepicker", function(e) {
+                let time = $(this).data('appointmenttime');
+                eval(time).set('state.time', $('#appointmentTimeInput').val());
             });
         })
     </script>
