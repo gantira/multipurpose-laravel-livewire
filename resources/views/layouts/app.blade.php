@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
 
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
     @livewireStyles
 </head>
 
@@ -61,6 +64,10 @@
 
     <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             toastr.options = {
@@ -87,6 +94,29 @@
         window.addEventListener('hide-delete-modal', event => {
             $('#confirmationModal').modal('hide');
             toastr.success(event.detail.message, 'Success');
+        })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#appointmentDate').datetimepicker({
+                format: 'L',
+            });
+            $('#appointmentDateTime').datetimepicker({
+                format: 'L',
+            });
+
+            $('#appointmentDate').on("change.datetimepicker", function(e) {
+                let date = $(this).data('appointmentdate');
+                eval(date).set('state.date', $('#appointmentDateInput').val());
+
+            });
+
+            $('#appointmentDateTime').on("change.datetimepicker", function(e) {
+                let date = $(this).data('appointmentDateTime');
+                eval(date).set('state.time', $('#appointmentDateInput').val());
+
+            });
         })
     </script>
 

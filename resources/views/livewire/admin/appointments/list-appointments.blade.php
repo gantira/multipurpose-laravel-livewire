@@ -24,8 +24,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-end mb-2">
-                        <button wire:click.prevent="addNew" class="btn btn-primary"><i
-                                class="fa fa-plus-circle mr-1"></i> Add New appointment</button>
+                        <a href="{{ route('admin.appointments.create') }}">
+                            <button class="btn btn-primary"><i class="fa fa-plus-circle mr-1"></i> Add New
+                                appointment</button>
+                        </a>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -86,7 +88,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
                             class="fa fa-times mr-1"></i>Cancel</button>
-                    <button type="button" wire:click.prevent="deleteappointment" class="btn btn-danger"><i class="fa fa-trash mr-1"></i>
+                    <button type="button" wire:click.prevent="deleteappointment" class="btn btn-danger"><i
+                            class="fa fa-trash mr-1"></i>
                         <span>Delete Appointment</span>
                     </button>
                 </div>
