@@ -20,6 +20,8 @@
         href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 
     @livewireStyles
+
+    @stack('styles')
 </head>
 
 <body class="hold-transition sidebar-mini">
