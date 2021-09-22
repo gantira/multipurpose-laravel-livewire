@@ -1,4 +1,6 @@
 <div>
+    <x-loading-indicator/>
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -31,15 +33,18 @@
                             </a>
                         </div>
                         <div class="btn-group">
-                            <button wire:click="filterAppointmentsByStatus"  type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
+                            <button wire:click="filterAppointmentsByStatus" type="button"
+                                class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
                                 <span class="mr-1">All</span>
                                 <span class="badge badge-pill badge-info">{{ $appointmentsCount }}</span>
                             </button>
-                            <button wire:click="filterAppointmentsByStatus('scheduled')" type="button" class="btn {{ $status == 'scheduled' ? 'btn-secondary' : 'btn-default' }}">
+                            <button wire:click="filterAppointmentsByStatus('scheduled')" type="button"
+                                class="btn {{ $status == 'scheduled' ? 'btn-secondary' : 'btn-default' }}">
                                 <span class="mr-1">Scheduled</span>
                                 <span class="badge badge-pill badge-primary">{{ $scheduledAppointmentsCount }}</span>
                             </button>
-                            <button wire:click="filterAppointmentsByStatus('closed')" type="button" class="btn {{ $status == 'closed' ? 'btn-secondary' : 'btn-default' }}">
+                            <button wire:click="filterAppointmentsByStatus('closed')" type="button"
+                                class="btn {{ $status == 'closed' ? 'btn-secondary' : 'btn-default' }}">
                                 <span class="mr-1">Closed</span>
                                 <span class="badge badge-pill badge-success">{{ $closedAppointmentsCount }}</span>
                             </button>
