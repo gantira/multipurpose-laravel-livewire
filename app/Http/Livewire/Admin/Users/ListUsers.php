@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Users;
 
 use App\Http\Livewire\Admin\AdminComponent;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 
@@ -25,7 +26,7 @@ class ListUsers extends AdminComponent
 
     public function addNew()
     {
-        $this->state = [];
+        $this->reset();
 
         $this->showEditModal = false;
 
@@ -53,6 +54,8 @@ class ListUsers extends AdminComponent
 
     public function edit(User $user)
     {
+        $this->reset();
+
         $this->showEditModal = true;
 
         $this->user = $user;
@@ -72,6 +75,11 @@ class ListUsers extends AdminComponent
 
         if (!empty($validatedData['password'])) {
             $validatedData['password'] = bcrypt($validatedData['password']);
+        }
+
+        if($this->photo) {
+            Storage::disk('avatars')->delete($this->user->avatar);
+            $validatedData['avatar'] = $this->photo->store('/', 'avatars');
         }
 
         $this->user->update($validatedData);
