@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Appointments;
 
 use App\Http\Livewire\Admin\AdminComponent;
 use App\Models\Appointment;
+use Illuminate\Support\Str;
 
 class ListAppointments extends AdminComponent
 {
@@ -14,6 +15,10 @@ class ListAppointments extends AdminComponent
     public $status = null;
 
     protected $queryString = ['status'];
+
+    public $selectedRows = [];
+
+    public $selectPageRows = false;
 
     public function confirmAppointmentRemoval($appointmentId)
     {
@@ -38,14 +43,57 @@ class ListAppointments extends AdminComponent
         $this->status = $status;
     }
 
-    public function render()
+    public function updatedSelectPageRows($value)
     {
-        $appointments = Appointment::with('client')
+        if ($value) {
+            $this->selectedRows = $this->appointments->pluck('id')->map(function ($id) {
+                return (string) $id;
+            });
+        } else {
+            $this->reset(['selectedRows', 'selectPageRows']);
+        }
+    }
+
+    public function getAppointmentsProperty()
+    {
+        return Appointment::with('client')
             ->when($this->status, function ($query, $status) {
                 return $query->where('status', $status);
             })
             ->latest()
             ->paginate(3);
+    }
+
+    public function markAllAsScheduled()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'SCHEDULED']);
+
+        $this->dispatchBrowserEvent('updated', ['message' => Str::plural('Appointment', count($this->selectedRows)) . ' marked as scheduled.']);
+
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
+
+    public function markAllAsClosed()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->update(['status' => 'CLOSED']);
+
+        $this->dispatchBrowserEvent('updated', ['message' => Str::plural('Appointment', count($this->selectedRows)) . ' marked as closed.']);
+
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
+
+    public function deleteSelectedRows()
+    {
+        Appointment::whereIn('id', $this->selectedRows)->delete();
+
+        $this->dispatchBrowserEvent('deleted', ['message' => 'All selected appointment got deleted.']);
+
+        $this->reset(['selectPageRows', 'selectedRows']);
+    }
+
+    public function render()
+    {
+        $appointments = $this->appointments;
 
         $appointmentsCount = Appointment::count();
         $scheduledAppointmentsCount = Appointment::where('status', 'scheduled')->count();
