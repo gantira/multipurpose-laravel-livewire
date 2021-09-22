@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 
+    <script defer src="https://unpkg.com/alpinejs@3.3.4/dist/cdn.min.js"></script>
+
     @livewireStyles
 
     @stack('styles')
