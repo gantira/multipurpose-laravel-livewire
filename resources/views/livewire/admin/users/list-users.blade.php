@@ -37,6 +37,7 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Registered Date</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col">Options</th>
                                     </tr>
                                 </thead>
@@ -50,6 +51,15 @@
                                             {{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->created_at->toFormattedDate() }}</td>
+                                        <td>
+                                            <select class="form-control"
+                                                wire:change="changeRole({{ $user }},$event.target.value)">
+                                                <option value="admin" {{ ($user->role == 'admin') ? 'selected' : '' }}>
+                                                    ADMIN</option>
+                                                <option value="user" {{ ($user->role == 'user') ? 'selected' : '' }}>
+                                                    USER</option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <a href="" wire:click.prevent="edit({{ $user }})">
                                                 <i class="fa fa-edit mr-2"></i>
@@ -172,11 +182,9 @@
                                 </label>
                             </div>
                             @if ($photo)
-                            <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100"
-                                alt="">
+                            <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100" alt="">
                             @else
-                            <img src="{{ $state['avatar_url'] ?? '' }}" class="img d-block mb-2 w-100"
-                                alt="">
+                            <img src="{{ $state['avatar_url'] ?? '' }}" class="img d-block mb-2 w-100" alt="">
                             @endif
                         </div>
 
