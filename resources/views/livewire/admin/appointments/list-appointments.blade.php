@@ -43,11 +43,13 @@
                                 <div class="dropdown-menu" role="menu" style="">
                                     <a wire:click="deleteSelectedRows" class="dropdown-item" href="#">Delete
                                         Selected</a>
-                                    <a wire:click="markAllAsScheduled" class="dropdown-item" href="#">Mark as Scheduled</a>
+                                    <a wire:click="markAllAsScheduled" class="dropdown-item" href="#">Mark as
+                                        Scheduled</a>
                                     <a wire:click="markAllAsClosed" class="dropdown-item" href="#">Mark as Closed</a>
                                 </div>
                             </div>
-                            <span class="ml-2">selected {{ count($selectedRows) }} {{ Str::plural('appointment', count($selectedRows)) }}</span>
+                            <span class="ml-2">selected {{ count($selectedRows) }}
+                                {{ Str::plural('appointment', count($selectedRows)) }}</span>
                             @endif
 
                         </div>
