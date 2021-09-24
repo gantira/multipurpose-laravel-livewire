@@ -66,131 +66,124 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-6">
+
+                                    <div class="col-md-6">
                                         <!-- Color Picker -->
-                                        <div class="form-group" wire:ignore.self>
-                                            <label>Color picker:</label>
-                                            <input wire:model.defer="state.color" type="text" class="form-control @error('color') is-invalid @enderror" id="colorPicker">
-                                            @error('color')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div> --}}
-                        <div class="col-md-6">
-                            <!-- Color Picker -->
-                            <!-- Color Picker -->
-                            <div class="form-group">
-                                <label>Color picker with addon:</label>
+                                        <div class="form-group">
+                                            <label>Color picker with addon:</label>
 
-                                <div class="input-group" id="colorPicker">
-                                    <input name="color" type="text" class="form-control">
+                                            <div class="input-group" id="colorPicker">
+                                                <input name="color" type="text" class="form-control">
 
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-square"></i></span>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-square"></i></span>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- /.input group -->
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="appointmentDate">Appointment Date</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                            class="fas fa-calendar"></i></span>
+                                                </div>
+                                                <x-datepicker wire:model.defer="state.date" id="appointmentDate"
+                                                    :error="'date'" />
+                                                @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="appointmentTime">Appointment Time</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                            class="fas fa-calendar"></i></span>
+                                                </div>
+                                                <x-timepicker wire:model.defer="state.time" id="appointmentTime"
+                                                    :error="'time'" />
+                                                @error('time')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div wire:ignore class="form-group">
+                                            <label for="note">Note:</label>
+                                            <textarea id="note" data-note="@this" wire:model.defer="state.note"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="client">Status:</label>
+                                            <select wire:model.defer="state.status"
+                                                class="form-control @error('status') is-invalid @enderror">
+                                                <option value="">Select Status</option>
+                                                <option value="SCHEDULED">Scheduled</option>
+                                                <option value="CLOSED">Closed</option>
+                                            </select>
+                                            @error('status')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-secondary"><i class="fa fa-times mr-1"></i>
+                                    Cancel</button>
+                                <button id="submit" type="submit" class="btn btn-primary"><i
+                                        class="fa fa-save mr-1"></i> Save</button>
                             </div>
                         </div>
+                    </form>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="appointmentDate">Appointment Date</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                </div>
-                                <x-datepicker wire:model.defer="state.date" id="appointmentDate" :error="'date'" />
-                                @error('date')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="appointmentTime">Appointment Time</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                </div>
-                                <x-timepicker wire:model.defer="state.time" id="appointmentTime" :error="'time'" />
-                                @error('time')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div wire:ignore class="form-group">
-                            <label for="note">Note:</label>
-                            <textarea id="note" data-note="@this" wire:model.defer="state.note"
-                                class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="client">Status:</label>
-                            <select wire:model.defer="state.status"
-                                class="form-control @error('status') is-invalid @enderror">
-                                <option value="">Select Status</option>
-                                <option value="SCHEDULED">Scheduled</option>
-                                <option value="CLOSED">Closed</option>
-                            </select>
-                            @error('status')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-secondary"><i class="fa fa-times mr-1"></i>
-                    Cancel</button>
-                <button id="submit" type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save</button>
             </div>
         </div>
-        </form>
     </div>
-</div>
-</div>
-</div>
 
-@push('js')
-<script>
-    $('#colorPicker').colorpicker().on('change', function(event) {
+    @push('js')
+    <script>
+        $('#colorPicker').colorpicker().on('change', function(event) {
       $('#colorPicker .fa-square').css('color', event.color.toString());
     })
-</script>
-<script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor.create(document.querySelector( '#note' ));
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector( '#note' ));
 
         $('form').submit(function() {
             @this.set('state.members', $('#members').val());
             @this.set('state.note', $('#note').val());
             @this.set('state.color', $('[name=color]').val());
         })
-</script>
-@endpush
+    </script>
+    @endpush
 </div>
