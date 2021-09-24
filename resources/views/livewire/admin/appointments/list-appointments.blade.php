@@ -41,11 +41,12 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu" style="">
-                                    <a wire:click="deleteSelectedRows" class="dropdown-item" href="#">Delete
+                                    <a wire:click.prevent="deleteSelectedRows" class="dropdown-item" href="#">Delete
                                         Selected</a>
-                                    <a wire:click="markAllAsScheduled" class="dropdown-item" href="#">Mark as
+                                    <a wire:click.prevent="markAllAsScheduled" class="dropdown-item" href="#">Mark as
                                         Scheduled</a>
-                                    <a wire:click="markAllAsClosed" class="dropdown-item" href="#">Mark as Closed</a>
+                                    <a wire:click.prevent="markAllAsClosed" class="dropdown-item" href="#">Mark as Closed</a>
+                                    <a wire:click.prevent="export" class="dropdown-item" href="#">Export</a>
                                 </div>
                             </div>
                             <span class="ml-2">selected {{ count($selectedRows) }}
@@ -93,10 +94,9 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $appointment)
-
                                     <tr>
-                                        <th>
-                                            <div class="icheck-primary d-inline ml-2">
+                                        <th style="width: 10px;">
+                                            <div class="icheck-primary d-inline">
                                                 <input wire:model="selectedRows" type="checkbox"
                                                     value="{{ $appointment->id }}" name="todo2"
                                                     id="{{ $appointment->id }}">
