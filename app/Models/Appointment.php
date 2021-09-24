@@ -16,11 +16,13 @@ class Appointment extends Model
         'time',
         'status',
         'note',
+        'members',
     ];
 
     protected $casts = [
         'date' => 'datetime',
         'time' => 'datetime',
+        'members' => 'array',
     ];
 
     public function client()

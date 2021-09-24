@@ -43,6 +43,26 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div wire:ignore class="form-group">
+                                            <label>Select Team Members</label>
+                                            <select class="select2" multiple="multiple"
+                                                data-placeholder="Select a State" style="width: 100%;">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                            </select>
+                                            @error('client_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -73,7 +93,8 @@
                                                     <span class="input-group-text"><i
                                                             class="fas fa-calendar"></i></span>
                                                 </div>
-                                                <x-timepicker wire:model.defer="state.time" id="appointmentTime" :error="'time'"/>
+                                                <x-timepicker wire:model.defer="state.time" id="appointmentTime"
+                                                    :error="'time'" />
                                                 @error('time')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -130,6 +151,16 @@
     </div>
 
     @push('js')
+    <script>
+        $(function() {
+            $('.select2').select2({
+                theme: 'bootstrap4',
+            }).on('change', function() {
+                @this.set('state.members', $(this).val());
+            });
+        })
+    </script>
+
     <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor

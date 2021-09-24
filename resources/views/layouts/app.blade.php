@@ -21,6 +21,10 @@
 
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
 
     @livewireStyles
 
@@ -73,6 +77,10 @@
     <script type="text/javascript"
         src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
+    <!-- Select2 -->
+    <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+
+
 
     <script>
         $(document).ready(function() {
@@ -115,6 +123,7 @@
     @livewireScripts
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js"></script>
+
 
 
 </body>
