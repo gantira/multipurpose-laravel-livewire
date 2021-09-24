@@ -15,6 +15,7 @@ class CreateAppointmentForm extends AdminComponent
 
     public function createAppointment()
     {
+        dd($this->state);
         Validator::make(
             $this->state,
             [
