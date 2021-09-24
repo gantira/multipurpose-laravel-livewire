@@ -21,6 +21,10 @@
 
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet"
+        href="{{ asset('backend/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+
     @stack('styles')
     @livewireStyles
 
@@ -77,7 +81,8 @@
     <script type="text/javascript" src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
     <script type="text/javascript"
         src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
+    <!-- bootstrap color picker -->
+    <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
