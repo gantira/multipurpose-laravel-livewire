@@ -15,12 +15,11 @@ class CreateAppointmentForm extends AdminComponent
 
     public function createAppointment()
     {
-        dd($this->state);
         Validator::make(
             $this->state,
             [
                 'client_id' => 'required',
-                'members' => 'nullable|array',
+                'members' => 'required|array',
                 'date' => 'required',
                 'time' => 'required',
                 'note' => 'nullable',

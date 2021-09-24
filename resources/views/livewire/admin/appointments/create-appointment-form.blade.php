@@ -46,35 +46,20 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Select Team Members</label>
-                                            <x-inputs.select2 wire:model="state.members" id="members" placeholder="Select Members">
-                                                <option>One</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
-                                            </x-inputs.select2>
-                                            @error('client_id')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                            <div
+                                                class="@error('members') is-invalid border border-danger rounded custom-error @enderror">
+                                                <x-inputs.select2 wire:model="state.members" id="members"
+                                                    placeholder="Select Members">
+                                                    <option>One</option>
+                                                    <option>Alaska</option>
+                                                    <option>California</option>
+                                                    <option>Delaware</option>
+                                                    <option>Tennessee</option>
+                                                    <option>Texas</option>
+                                                    <option>Washington</option>
+                                                </x-inputs.select2>
                                             </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Select Team Members</label>
-                                            <x-inputs.select2 wire:model="state.others" id="others">
-                                                <option>One</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
-                                            </x-inputs.select2>
-                                            @error('client_id')
+                                            @error('members')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -169,26 +154,14 @@
     </div>
 
     @push('js')
-
-
     <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-                .create( document.querySelector( '#note' ) )
-                .then( editor => {
-                        // editor.model.document.on('change:data', () => {
-                        //     let note = $('#note').data('note');
-                        //     eval(note).set('state.note', editor.getData());
-                        // });
-                        document.querySelector('#submit').addEventListener('click', () => {
-                            let note = $('#note').data('note');
-                            eval(note).set('state.note', editor.getData());
-                        })
-                } )
-                .catch( error => {
-                        console.error( error );
-                } );
+        ClassicEditor.create(document.querySelector( '#note' ));
+
+        $('form').submit(function() {
+            @this.set('state.members', $('#members').val());
+            @this.set('state.note', $('#note').val());
+        })
     </script>
     @endpush
-
 </div>

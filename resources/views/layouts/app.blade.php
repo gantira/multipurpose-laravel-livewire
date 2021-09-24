@@ -24,6 +24,12 @@
     @stack('styles')
     @livewireStyles
 
+    <style>
+        .custom-error .select2-selection {
+            border: none;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
