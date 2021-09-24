@@ -21,7 +21,6 @@
 
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
-    <script defer src="https://unpkg.com/alpinejs@3.3.4/dist/cdn.min.js"></script>
 
     @livewireStyles
 
@@ -114,6 +113,10 @@
 
     @stack('js')
     @livewireScripts
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js"></script>
+
+
 </body>
 
 </html>
