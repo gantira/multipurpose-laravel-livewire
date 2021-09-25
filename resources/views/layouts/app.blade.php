@@ -83,6 +83,9 @@
         src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <!-- bootstrap color picker -->
     <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+    @stack('alpine-plugins')
+    <!-- Alpine Core -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -121,10 +124,19 @@
         })
     </script>
 
+    <script>
+        $('[x-ref="profileLink"]').on('click', function() {
+            localStorage.setItem('_x_currentTab', '"profile"');
+        })
+        $('[x-ref="changePasswordLink"]').on('click', function() {
+            localStorage.setItem('_x_currentTab', '"changePassword"');
+        })
+    </script>
+
     @stack('js')
     @livewireScripts
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js"></script>
+
 
 
 </body>

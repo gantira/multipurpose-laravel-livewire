@@ -28,7 +28,7 @@
                             <div class="text-center" x-data="{ imagePreview: '{{ auth()->user()->avatar_url }}' }">
                                 <input wire:model="image" type="file" x-ref="image" accept="image/*" class="d-none"
                                     x-on:change="
-                                        const reader = new FileReader();
+                                        reader = new FileReader();
                                         reader.onload = (event) => {
                                             imagePreview = event.target.result;
                                             document.getElementById('profileImage').src = `${imagePreview}`;
@@ -50,20 +50,23 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
-                    <div class="card">
+                    <div class="card" x-data="{ currentTab: $persist('profile') }">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills" wire:ignore>
-                                <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab"><i
-                                            class="fa fa-user mr-2"></i>Edit
+                                <li @click.prevent="currentTab = 'profile'" class="nav-item"><a class="nav-link"
+                                        :class="currentTab == 'profile' ? 'active' : ''" href="#profile"
+                                        data-toggle="tab"><i class="fa fa-user mr-2"></i>Edit
                                         Profile</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab"><i
-                                            class="fa fa-key mr-2"></i>Change
+                                <li @click.prevent="currentTab = 'changePassword'" class="nav-item"><a class="nav-link"
+                                        :class="currentTab == 'changePassword' ? 'active' : ''" href="#changePassword"
+                                        data-toggle="tab"><i class="fa fa-key mr-2"></i>Change
                                         Password<a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="profile" wire:ignore.self>
+                                <div class="tab-pane" :class="currentTab == 'profile' ? 'active' : ''" id="profile"
+                                    wire:ignore.self>
                                     <form wire:submit.prevent="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
@@ -99,7 +102,8 @@
                                     </form>
                                 </div>
 
-                                <div class="tab-pane" id="changePassword" wire:ignore.self>
+                                <div class="tab-pane" :class="currentTab == 'changePassword' ? 'active' : ''"
+                                    id="changePassword" wire:ignore.self>
                                     <form wire:submit.prevent="changePassword" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="currentPassword" class="col-sm-3 col-form-label">Current
@@ -120,7 +124,8 @@
                                                 Password</label>
                                             <div class="col-sm-9">
                                                 <input wire:model.defer="state.password" type="password"
-                                                    class="form-control @error('password') is-invalid @enderror" id="newPassword" placeholder="New Password">
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    id="newPassword" placeholder="New Password">
                                                 @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -133,8 +138,8 @@
                                                 New Password</label>
                                             <div class="col-sm-9">
                                                 <input wire:model.defer="state.password_confirmation" type="password"
-                                                    class="form-control @error('password_confirmation') is-invalid @enderror" id="passwordConfirmation"
-                                                    placeholder="Confirm New Password">
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    id="passwordConfirmation" placeholder="Confirm New Password">
                                                 @error('password_confirmation')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -172,6 +177,11 @@
         cursor: pointer;
     }
 </style>
+@endpush
+
+@push('alpine-plugins')
+<!-- Alpine Plugins -->
+<script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 @endpush
 
 
