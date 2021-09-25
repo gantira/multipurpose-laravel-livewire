@@ -52,16 +52,18 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header p-2">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab"><i class="fa fa-user mr-2"></i>Edit
+                            <ul class="nav nav-pills" wire:ignore>
+                                <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab"><i
+                                            class="fa fa-user mr-2"></i>Edit
                                         Profile</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab">Change
-                                        Password</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#changePassword" data-toggle="tab"><i
+                                            class="fa fa-key mr-2"></i>Change
+                                        Password<a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="profile">
+                                <div class="tab-pane active" id="profile" wire:ignore.self>
                                     <form wire:submit.prevent="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
@@ -97,30 +99,47 @@
                                     </form>
                                 </div>
 
-                                <div class="tab-pane" id="changePassword">
-                                    <form class="form-horizontal">
+                                <div class="tab-pane" id="changePassword" wire:ignore.self>
+                                    <form wire:submit.prevent="changePassword" class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="currentPassword" class="col-sm-3 col-form-label">Current
                                                 Password</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" id="currentPassword"
-                                                    placeholder="Current Password">
+                                                <input wire:model.defer="state.current_password" type="password"
+                                                    class="form-control @error('current_password') is-invalid @enderror"
+                                                    id="currentPassword" placeholder="Current Password">
+                                                @error('current_password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="newPassword" class="col-sm-3 col-form-label">New
                                                 Password</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" id="newPassword"
-                                                    placeholder="New Password">
+                                                <input wire:model.defer="state.password" type="password"
+                                                    class="form-control @error('password') is-invalid @enderror" id="newPassword" placeholder="New Password">
+                                                @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm
                                                 New Password</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" id="passwordConfirmation"
+                                                <input wire:model.defer="state.password_confirmation" type="password"
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror" id="passwordConfirmation"
                                                     placeholder="Confirm New Password">
+                                                @error('password_confirmation')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -157,11 +176,11 @@
 
 
 @push('js')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             Livewire.on('nameChanged', (changedName) => {
                 $('[x-ref="username"]').text(changedName);
             })
         })
-    </script>
+</script>
 @endpush
