@@ -63,8 +63,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="{{ route('admin.settings') }}" class="nav-link {{ request()->is('admin/settings') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             Settings
                         </p>
@@ -80,7 +80,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();getElementById('logout').submit();">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fa fa-sign-out-alt"></i>
                         <p>
                             Logout
                         </p>
