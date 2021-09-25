@@ -29,6 +29,8 @@ class ListUsers extends AdminComponent
 
     public $sortDirection = 'desc';
 
+    public $queryString = ['searchTerm' => ['except' => '']];
+
     public function changeRole(User $user, $role)
     {
         Validator::make(['role' => $role], [
@@ -124,7 +126,7 @@ class ListUsers extends AdminComponent
 
     public function sortBy($columnName)
     {
-        if($this->sortColumnName === $columnName) {
+        if ($this->sortColumnName === $columnName) {
             $this->sortDirection = $this->swapSortDirection();
         } else {
             $this->sortDirection = 'asc';
@@ -136,6 +138,11 @@ class ListUsers extends AdminComponent
     public function swapSortDirection()
     {
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
+    public function updatedSearchTerm()
+    {
+        $this->resetPage();
     }
 
     public function render()
