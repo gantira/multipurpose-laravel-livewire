@@ -9,43 +9,43 @@ use Livewire\Component;
 
 class UpdateAppointmentForm extends Component
 {
-    public $state = [];
+	public $state = [];
 
-    public $appointment;
+	public $appointment;
 
-    public function mount(Appointment $appointment)
-    {
-        $this->state = $appointment->toArray();
-        $this->appointment = $appointment;
-    }
+	public function mount(Appointment $appointment)
+	{
+		$this->state = $appointment->toArray();
 
-    public function updateAppointment()
-    {
-        Validator::make(
-            $this->state,
-            [
-                'client_id' => 'required',
-                'date' => 'required',
-                'time' => 'required',
-                'note' => 'nullable',
-                'status' => 'required|in:SCHEDULED,CLOSED',
-            ],
-            [
-                'client_id.required' => 'The client field is required'
-            ]
-        )->validate();
+		$this->appointment = $appointment;
+	}
 
-        $this->appointment->update($this->state);
+	public function updateAppointment()
+	{
+		Validator::make(
+			$this->state,
+			[
+				'client_id' => 'required',
+				'date' => 'required',
+				'time' => 'required',
+				'note' => 'nullable',
+				'status' => 'required|in:SCHEDULED,CLOSED',
+			],
+			[
+				'client_id.required' => 'The client field is required.'
+			])->validate();
 
-        $this->dispatchBrowserEvent('alert', ['message' => 'Appointment updated succesfully!']);
-    }
+		$this->appointment->update($this->state);
+
+		$this->dispatchBrowserEvent('alert', ['message' => 'Appointment updated successfully!']);
+	}
 
     public function render()
     {
-        $clients = Client::all();
+    	$clients = Client::all();
 
         return view('livewire.admin.appointments.update-appointment-form', [
-            'clients' => $clients,
+        	'clients' => $clients,
         ]);
     }
 }
