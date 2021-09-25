@@ -45,7 +45,8 @@
                                         Selected</a>
                                     <a wire:click.prevent="markAllAsScheduled" class="dropdown-item" href="#">Mark as
                                         Scheduled</a>
-                                    <a wire:click.prevent="markAllAsClosed" class="dropdown-item" href="#">Mark as Closed</a>
+                                    <a wire:click.prevent="markAllAsClosed" class="dropdown-item" href="#">Mark as
+                                        Closed</a>
                                     <a wire:click.prevent="export" class="dropdown-item" href="#">Export</a>
                                 </div>
                             </div>
@@ -77,6 +78,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>
                                             <div class="icheck-primary d-inline ml-2">
                                                 <input wire:model="selectPageRows" type="checkbox" value="" name="todo2"
@@ -92,10 +94,14 @@
                                         <th scope="col">Options</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody wire:sortable="updateAppointmentOrder">
                                     @foreach ($appointments as $appointment)
-                                    <tr>
-                                        <th style="width: 10px;">
+                                    <tr wire:sortable.item="{{ $appointment->id }}"
+                                        wire:key="appointment-{{ $appointment->id }}">
+                                        <td wire:sortable.handle style="width: 10px;cursor:move;"><i
+                                                class="fa fa-arrows-alt text-muted"></i>
+                                        </td>
+                                        <th style="width: 10px; ">
                                             <div class="icheck-primary d-inline">
                                                 <input wire:model="selectedRows" type="checkbox"
                                                     value="{{ $appointment->id }}" name="todo2"
@@ -142,3 +148,14 @@
 
     <x-confirmation-alert />
 </div>
+
+@push('styles')
+<style>
+    .draggable-mirror {
+        background-color: white;
+        width: 950px;
+        justify-content: space-between;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+</style>
+@endpush

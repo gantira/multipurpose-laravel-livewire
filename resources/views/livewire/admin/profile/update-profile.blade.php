@@ -42,7 +42,7 @@
 
                             <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
 
-                            <p class="text-muted text-center">Admin</p>
+                            <p class="text-muted text-center text-capitalize">{{ auth()->user()->role }}</p>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save mr-2"></i>Save Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -149,7 +149,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-3 col-sm-9">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save mr-2"></i>Save Changes</button>
                                             </div>
                                         </div>
                                     </form>

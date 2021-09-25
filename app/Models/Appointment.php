@@ -18,6 +18,7 @@ class Appointment extends Model
         'status',
         'note',
         'members',
+        'order_position',
     ];
 
     protected $casts = [
