@@ -171,4 +171,5 @@
 
 </div>
 
+@include('livewire/admin/appointments/appointment-css')
 @include('livewire/admin/appointments/appointment-js')
