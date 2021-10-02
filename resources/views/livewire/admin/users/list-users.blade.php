@@ -54,9 +54,9 @@
                                     </tr>
                                 </thead>
                                 <tbody wire:loading.class="text-muted">
-                                    @forelse ($users as $user)
+                                    @forelse ($users as $index => $user)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <th scope="row">{{ $users->firstItem() + $index }}</th>
                                         <td>
                                             <img src="{{ $user->avatar_url }}" class="img img-circle img-size-50 mr-1"
                                                 alt="">
